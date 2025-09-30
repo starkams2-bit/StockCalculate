@@ -55,13 +55,13 @@ td {
 }
 
 /* 데이터 열 너비 및 정렬 최적화 */
-th:nth-child(1), td:nth-child(1) { width: 6%; text-align: center; } /* 코드 (가운데 정렬) */
-th:nth-child(2), td:nth-child(2) { width: 7%; }
-th:nth-child(3), td:nth-child(3) { width: 7%; }
-th:nth-child(4), td:nth-child(4) { width: 7%; }
-th:nth-child(5), td:nth-child(5) { width: 8%; }
-th:nth-child(6), td:nth-child(6) { width: 6%; }
-th:nth-child(7), td:nth-child(7) { width: 8%; }
+th:nth-child(1), td:nth-child(1) { width: 4%; text-align: center; } /* 코드 (가운데 정렬) */
+th:nth-child(2), td:nth-child(2) { width: 8%; }
+th:nth-child(3), td:nth-child(3) { width: 5%; }
+th:nth-child(4), td:nth-child(4) { width: 6%; }
+th:nth-child(5), td:nth-child(5) { width: 6%; }
+th:nth-child(6), td:nth-child(6) { width: 4%; }
+th:nth-child(7), td:nth-child(7) { width: 6%; }
 
 /* 계산기 그룹별 배경색 */
 .calc-group-1 { background-color: #FFFDE7; } /* 노랑 */
