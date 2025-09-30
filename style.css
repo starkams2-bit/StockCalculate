@@ -1,0 +1,89 @@
+body {
+    font-family: 'Malgun Gothic', sans-serif;
+    margin: 20px;
+}
+#calculator-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+textarea {
+    width: 95%;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 14px;
+}
+/* 버튼 컨테이너 스타일 */
+.button-container {
+    display: flex;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+.button-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+/* '데이터 지움' 버튼을 오른쪽 끝으로 이동 */
+#clearDataBtn {
+    margin-left: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 950px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    font-size: clamp(11px, 1.2vw, 15px);
+}
+th {
+    border: 1px solid #ccc;
+    padding: 5px;
+    background-color: #f2f2f2;
+    position: sticky;
+    top: 0;
+    white-space: normal;
+    word-break: break-word;
+    vertical-align: middle;
+    text-align: center;
+    height: 40px;
+}
+td {
+    border: 1px solid #ccc;
+    padding: 5px;
+    text-align: right;
+    height: 30px;
+}
+
+/* 데이터 열 너비 및 정렬 최적화 */
+th:nth-child(1), td:nth-child(1) { width: 6%; text-align: center; } /* 코드 (가운데 정렬) */
+th:nth-child(2), td:nth-child(2) { width: 7%; }
+th:nth-child(3), td:nth-child(3) { width: 7%; }
+th:nth-child(4), td:nth-child(4) { width: 7%; }
+th:nth-child(5), td:nth-child(5) { width: 8%; }
+th:nth-child(6), td:nth-child(6) { width: 6%; }
+th:nth-child(7), td:nth-child(7) { width: 8%; }
+
+/* 계산기 그룹별 배경색 */
+.calc-group-1 { background-color: #FFFDE7; } /* 노랑 */
+.calc-group-2 { background-color: #FFF3E0; } /* 주황 */
+.calc-group-3 { background-color: #E3F2FD; } /* 하늘 */
+
+/* 입력 상자 스타일 */
+td input {
+    width: 100%;
+    height: 100%;
+    font-size: inherit;
+    box-sizing: border-box;
+    text-align: right;
+    border: 1px solid #9E9E9E;
+    padding: 0 5px;
+    background-color: #E8F5E9;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
