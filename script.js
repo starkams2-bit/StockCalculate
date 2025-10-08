@@ -1,6 +1,10 @@
 const COLUMNS_TO_SHOW = [0, 2, 3, 4, 5, 6, 8];
 
 document.addEventListener('DOMContentLoaded', () => {
+    // '가용금액' 입력값 변경 시 표 자동 반영
+    document.getElementById('availableAmount').addEventListener('input', () => {
+        updateAvailableAmountInTable();
+    });
     // '데이터 지움' 버튼
     document.getElementById('clearDataBtn').addEventListener('click', () => {
         document.getElementById('dataInput').value = '';
@@ -78,6 +82,37 @@ function loadData() {
 
         addCalculatorCells(tr, i);
         table.appendChild(tr);
+    }
+    updateAvailableAmountInTable();
+}
+// '가용금액' 입력값을 표의 13번째 셀(투입금액)에 자동 반영하고, 관련 계산도 업데이트
+function updateAvailableAmountInTable() {
+    const table = document.getElementById('stockTable');
+    const availableAmount = parseFloat(document.getElementById('availableAmount').value) || 0;
+    for (let i = 1; i < table.rows.length; i++) {
+        const tr = table.rows[i];
+        // 13번째 셀: 투입금액 (index 12)
+        const 투입금액셀 = tr.cells[12];
+        if (투입금액셀) {
+            투입금액셀.textContent = availableAmount.toLocaleString();
+        }
+        // 11번째 셀: 목표가 (index 10), 12번째 셀: 추가매수량 (index 11)
+        // 예시 계산: 목표가 = (가용금액 / 기존수량) + 현재가, 추가매수량 = 가용금액 / 현재가
+        const fullData = JSON.parse(tr.dataset.fullRow);
+        const existingShares = parseFloat(fullData[6].replace(/,/g, '')) || 0;
+        const currentPrice = parseFloat(tr.cells[6].firstChild ? tr.cells[6].firstChild.value : tr.cells[6].textContent) || 0;
+        // 추가매수량 계산
+        let 추가매수량 = 0;
+        if (currentPrice > 0) {
+            추가매수량 = Math.floor(availableAmount / currentPrice);
+            tr.cells[11].textContent = 추가매수량;
+        }
+        // 목표가 계산: ((매입가 * 보유량)+(현재가 * 추가매수량))/(보유량+추가매수량)
+        const 매입가 = parseFloat(fullData[5].replace(/,/g, '')) || 0;
+        if (existingShares + 추가매수량 > 0) {
+            const 목표가 = ((매입가 * existingShares) + (currentPrice * 추가매수량)) / (existingShares + 추가매수량);
+            tr.cells[10].textContent = 목표가.toFixed(2);
+        }
     }
 }
 
